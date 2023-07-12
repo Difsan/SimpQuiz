@@ -1,57 +1,61 @@
 <template>
-  <div id="app" class="app">
-    <div class="header">
-      <h1>SimpQuiz</h1>
-      <nav>
-        <button v-if="!is_auth" v-on:click="loadRanking">Ranking Puntos</button>
-        
-      </nav>
-    </div>
+  <div class="container-sm" >
+    <div :style="image" id="app" class="app">
 
-    <div class="main-component">
-      <router-view
-       v-on:completedLogIn="completedLogIn"
-       v-on:logOut="logOut"
-      ></router-view>
-    </div>
+      <div class="navbar navbar-expand-lg">
+        <h1><strong>SimpQuiz</strong></h1>
+        <nav>
+          <button v-if="!is_auth" v-on:click="loadRanking"><strong>Ranking Puntos</strong></button>
+        </nav>
+      </div>
 
-    <div class="footer">
-      <h2>Desarrollado por: Diego Sanchez</h2>
+      <div class="main-component">
+
+        <router-view v-on:loadLogIn="loadLogIn" v-on:completedLogIn="completedLogIn" v-on:logOut="logOut">
+        </router-view>
+      </div>
+
+      <div class="footer">
+        <h2><strong>Desarrollado por: Diego Sánchez</strong></h2>
+      </div>
     </div>
-  </div>
+    </div>
+  
+
 </template>
 
 <script>
 
 export default {
   name: 'App',
-  data: function(){
-    return{
-      is_auth: false
+  data: function () {
+    return {
+      is_auth: false,
+      image: { backgroundImage: "url(https://wallpaperaccess.com/full/535125.jpg)" }
     }
 
   },
 
-  components:{},
-  methods:{
-    
-    verifyAuth: function(){
+  components: {},
+  methods: {
+
+    verifyAuth: function () {
       this.is_auth = localStorage.getItem("isAuth") || false;
-      if(this.is_auth ==  false)
-       this.$router.push({name: "logIn"});
-       else
-       this.$router.push({name: "ronda"});
+      if (this.is_auth == false)
+        this.$router.push({ name: "logIn" });
+      else
+        this.$router.push({ name: "ronda" });
     },
 
-    loadLogIn: function(){
-      this.$router.push({name: "logIn"});
+    loadLogIn: function () {
+      this.$router.push({ name: "logIn" });
     },
 
-    loadRanking: function(){
-      this.$router.push({name: "ranking"});
+    loadRanking: function () {
+      this.$router.push({ name: "ranking" });
     },
 
-    completedLogIn: function(data){
+    completedLogIn: function (data) {
       localStorage.setItem("isAuth", true);
       localStorage.setItem("userId", data.id);
       localStorage.setItem("user_nickname", data.nickname);
@@ -60,95 +64,125 @@ export default {
       this.verifyAuth();
     },
 
-    logOut: function(){
+    logOut: function () {
       localStorage.clear();
       console.log("Sesion Cerrada");
       this.verifyAuth();
     }
   },
 
-  created: function(){
-    this.verifyAuth()
+  created: function () {
+    this.verifyAuth(),
+      this.image
   }
 }
 </script>
 
 
 <style>
-body{
-  margin: 0 0 0 0;
+@font-face {
+  font-family: 'Simpson';
+  src: url(./assets/Simpsonfont.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 100;
 }
-.header {
+
+body {
+  margin: 0 0 0 0;
+
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  /*style to the background image */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.navbar {
   margin: 0%;
   padding: 0;
   width: 100%;
-  /*del total vertical solo acuper el 10%*/
+  /*del total vertical solo acupar el 10%*/
   height: 10vh;
   /*como minimo 100 pixeles de altura*/
   min-height: 100px;
-
-  background-color: #2e89eb;
-  color: #e5e7e9;
-
+  color: #0f0f10;
   /*acomode al reajuste de la pantalla*/
   display: flex;
   /*contenido justificado con espacio igual entre los elementos*/
   justify-content: space-between;
   align-items: center;
 }
-.header h1 {
-  width: 20%;
+
+.navbar h1 {
+  font-family: 'Simpson';
+  width: 10%;
   text-align: center;
+  display: flex;
+  font-size: 120px;
+
 }
-.header nav {
+
+.navbar nav {
   height: 100%;
-  width: 20%;
+  width: 100%;
   display: flex;
   /*Todoslos espacios iguales, incluso los de espacio desde borde navegador */
-  justify-content: space-around;
+  justify-content: right;
+  
   /*centrar items en vertical*/
   align-items: center;
-  font-size: 20px;
 }
-.header nav button {
-  color: #e5e7e9;
-  background: #2e89eb;
-  border: 1px solid #e5e7e9;
+
+.navbar nav button {
+  color: #0f0f10;
+  font-size: 40px;
+  background: #40a6bb;
+  border: 1px solid #0f0f10;
   /*redondear las esquinas */
-  border-radius: 5px;
-   /*Espacio entre botones*/
+  border-radius: 80px;
+  /*Espacio entre botones*/
   padding: 10px 20px;
+  display: flex;
+  font-family: 'Simpson';
 }
-.header nav button:hover {
-  color: #283747;
-  background: crimson;
-  border: 1px solid #283747;
+
+.navbar nav button:hover {
+  color: #156d8e;
+  background: #ecc54d;
+  border: 1px solid #156d8e;
 }
+
 .main-component {
-  /*vh= 1% de lo que mide la pagina verticalmente, alrtura */
+  /*vh= 1% de lo que mide la pagina verticalmente, altura */
   /*vw= 1% de lo que mide la pagina horizontal, ancho */
-  height: 75vh;
+  height: 80vh;
   margin: 0%;
   padding: 0%;
-  background: #fdfefe;
+  display: flex;
 }
 
 .footer {
-  margin: 0;
+  margin: 0 0 0 0;
   padding: 0;
   /*del componente padre como aqui el apdre tiene el 75%, pues es el
   100% de ese 75 */
   width: 100%;
   height: 10vh;
-  min-height: 100px;
-  background-color: #2e89eb;
-  color: #e5e7e9;
+  color: #121b32;
 }
+
 .footer h2 {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Simpson';
+  font-size: 30px;
+
 }
 </style>

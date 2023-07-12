@@ -90,13 +90,26 @@ WSGI_APPLICATION = 'SimpQuiz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+# Heroku
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'de2hrhgubq0l7k',
         'USER': 'feiwnyonqlnvps',
         'PASSWORD': '79f29ba843d96b08bd50a2129504db13b8e37dea7d56e2483a9d5f081877f505',
         'HOST': 'ec2-52-72-99-110.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}"""
+
+#Cloud
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'jkhlwzrk',
+        'USER': 'jkhlwzrk',
+        'PASSWORD': 'n9KFPnAdau7j6RCay2MiuWCEjoM7fEZs',
+        'HOST': 'mahmud.db.elephantsql.com',
         'PORT': '5432',
     }
 }
