@@ -83,7 +83,7 @@ export default {
 
     getPreguntasXCatergoria: function () {
       axios.get(
-        `https://simpquiz-be.herokuapp.com/preguntas/filter/${this.participacionIn.ronda}/`,
+        `http://127.0.0.1:8000/preguntas/filter/${this.participacionIn.ronda}/`,
         {
           headers: {},
         })
@@ -110,7 +110,7 @@ export default {
 
     CrearParticipacion: function () {
       axios.post(
-        "https://simpquiz-be.herokuapp.com/participacion/",
+        "http://127.0.0.1:8000/participacion/",
         this.participacionIn,
         {
           headers: {},
@@ -128,7 +128,7 @@ export default {
 
     getRtasXpregunta: function () {
       axios.get(
-        `https://simpquiz-be.herokuapp.com/respuestas/filter/${this.participacionIn.preguntaId}/`,
+        `http://127.0.0.1:8000/respuestas/filter/${this.participacionIn.preguntaId}/`,
         {
           headers: {},
         }).then((result) => {
@@ -173,7 +173,7 @@ export default {
     UpdateParticipacion: function () {
 
       if (this.participacionIn.ronda > 5) this.participacionIn.ronda = 5;
-      axios.put(`https://simpquiz-be.herokuapp.com/participacion/update/${this.partiOut.id}/`,
+      axios.put(`http://127.0.0.1:8000/participacion/update/${this.partiOut.id}/`,
         this.participacionIn,
         { headers: {} })
         .then((result) => {
@@ -189,7 +189,7 @@ export default {
 
     ActualizarPuntajeTotal: function () {
       this.participante.puntaje_Total += this.participacionIn.puntaje_Ronda;
-      axios.put(`https://simpquiz-be.herokuapp.com/participante/update/${localStorage.getItem("userId")}/`,
+      axios.put(`http://127.0.0.1:8000/participante/update/${localStorage.getItem("userId")}/`,
         this.participante,
         { headers: {} })
         .then((result) => {
@@ -208,7 +208,7 @@ export default {
     },
 
     DeleteParticipacion: function () {
-      axios.delete(`https://simpquiz-be.herokuapp.com/participacion/remove/${this.partiOut.id}/`,
+      axios.delete(`http://127.0.0.1:8000/participacion/remove/${this.partiOut.id}/`,
         { headers: {} })
         .then((result) => {
           console.log("Participacion borrada exitosamente");
@@ -223,7 +223,7 @@ export default {
 
     getAllCategories: function () {
       axios.get(
-        `https://simpquiz-be.herokuapp.com/categorias/all/`,
+        `http://127.0.0.1:8000/categorias/all/`,
         {
           headers: {},
         }).then((result) => {

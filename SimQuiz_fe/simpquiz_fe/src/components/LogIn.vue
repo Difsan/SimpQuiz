@@ -35,7 +35,7 @@ export default {
   methods: {
     processLogInUser: function () {
       axios.post(
-        "https://simpquiz-be.herokuapp.com/participante/",
+        "http://127.0.0.1:8000/participante/",
         this.user, {
         headers: {},
       })
@@ -55,7 +55,7 @@ export default {
 
     verifyUser: function () {
       axios.get(
-        `https://simpquiz-be.herokuapp.com/participante/filter/${this.user.nickname}/`,
+        `http://127.0.0.1:8000/participante/filter/${this.user.nickname}/`,
         {
           headers: {},
         })

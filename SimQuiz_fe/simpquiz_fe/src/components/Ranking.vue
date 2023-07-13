@@ -50,7 +50,7 @@ export default {
         },
 
         getRankingList: function () {
-            axios.get(`https://simpquiz-be.herokuapp.com/participante/all/`,
+            axios.get(`http://127.0.0.1:8000/participante/all/`,
                 { headers: {} })
                 .then((result) => {
                     this.usuarios = result.data;
