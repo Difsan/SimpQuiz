@@ -60,6 +60,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
 """AUTH_USER_MODEL = 'SimpQuizApp.Participante'"""
@@ -109,6 +110,7 @@ DATABASES = {
         'PASSWORD': 'n9KFPnAdau7j6RCay2MiuWCEjoM7fEZs',
         'HOST': 'mahmud.db.elephantsql.com',
         'PORT': '5432',
+        'TEST': {'MIRROR': 'default',},
     }
 }
 
