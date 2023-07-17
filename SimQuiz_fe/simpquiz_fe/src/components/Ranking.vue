@@ -1,24 +1,32 @@
 <template>
     <div class="ranking">
-        <div class="container_rank">
+        <div v-if="loaded" class="container_rank">
+            <h1> <strong>Top 10</strong></h1>
+
             <table>
                 <tr>
-                    <td><strong>Usuario</strong></td>
-                    <td><strong>Puntaje</strong></td>
+                    <th><strong>Posición</strong></th>
+                    <th><strong>Usuario</strong></th>
+                    <th><strong>Puntaje</strong></th>
                 </tr>
-                <tr v-for="usuario in usuarios" :key="usuario.id">
-                    <td>{{ usuario.nickname }}</td>
-                    <td>{{ usuario.puntaje_Total }}</td>
+
+                <tr v-for="(usuario, index) in usuarios" :key="usuario.id">
+                    <td v-if="index < 10">{{ index + 1 }}</td>
+                    <td v-if="index < 10">{{ usuario.nickname }}</td>
+                    <td v-if="index < 10">{{ usuario.puntaje_Total }}</td>
                 </tr>
             </table>
-            <div>
-                <button v-on:click="loadLogIn">
+
+
+            <div class="container_button">
+                <button v-on:click="loadMainPage">
                     <strong>Regresar</strong>
                 </button>
             </div>
         </div>
-
     </div>
+
+
 
 </template>
 
@@ -32,19 +40,21 @@ export default {
         return {
             usuarios: [
             ],
+            loaded: false,
         }
     },
 
     methods: {
-        loadLogIn: function () {
-            this.$router.push({ name: "logIn" });
+        loadMainPage: function () {
+            this.$emit("loadLogIn");
         },
 
         getRankingList: function () {
-            axios.get(`https://simpquiz-be.herokuapp.com/participante/all/`,
+            axios.get(`http://127.0.0.1:8000/participante/all/`,
                 { headers: {} })
                 .then((result) => {
                     this.usuarios = result.data;
+                    this.loaded = true;
                     this.OrderPuntajesTotales();
                 })
                 .catch((error) => {
@@ -63,18 +73,18 @@ export default {
             this.usuarios = newA;
             this.usuarios.sort(function (a, b) {
                 return b.puntaje_Total - a.puntaje_Total;
-            }).then((result) => {
-                this.usuarios = result.data;
+            }).then(
                 console.log(this.usuarios)
-            })
+
+            )
                 .catch((error) => {
                 })
         },
 
     },
+
     created: async function () {
         this.getRankingList();
-        
     }
 }
 
@@ -82,7 +92,7 @@ export default {
 
 <style>
 .ranking {
-    margin: 0;
+    margin: 0 0 0 0;
     padding: 0%;
     height: 100%;
     width: 100%;
@@ -92,30 +102,68 @@ export default {
 }
 
 .container_rank {
-    border: 3px solid #2e89eb;
+    border: 3px solid #0f0f10;
     border-radius: 10px;
-    width: 25%;
-    height: 60%;
     display: flex;
+    height: 40%;
+    width: 30%;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Simpson';
+    font-size: 30px;
+}
+
+.container_rank h1 {
+    display: flex;
+    font-family: 'Simpson';
+    font-size: 60px;
+    color: #0f0f10;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.container_rank table {
+    margin: 5px 2px 2px 5px;
+    height: 50%;
+    width: 70%;
+    box-sizing: border-box;
+}
+
+.container_rank tr:nth-child(even) {
+    background-color: #3d7a8a;
+}
+
+.container_rank tr:nth-child(odd) {
+    background-color: #5ab4ca;
+}
+
+.container_rank td:nth-child(2) {
+    text-align: center;
+}
+
+.container_rank td:nth-child(3) {
+    text-align: right;
+}
+
+.ranking button {
+    height: 40px;
+    color: #0f0f10;
+    background: #db5293;
+    border: 1px solid #0f0f10;
+    font-family: 'Simpson';
+    font-size: 30px;
+}
+
+.container_button {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.ranking button {
-  width: 100%;
-  height: 40px;
-  color: #e5e7e9;
-  background: #2e89eb;
-  border: 1px solid #e5e7e9;
-  border-radius: 5px;
-  padding: 10px 25px;
-  margin: 5px 0 25px 0;
-}
-
 .ranking button:hover {
-  color: #e5e7e9;
-  background: crimson;
-  border: 1px solid #283747;
+    color: #156d8e;
+    background: #ecc54d;
+    border: 1px solid #156d8e;
 }
 </style>

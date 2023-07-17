@@ -1,7 +1,5 @@
-django==3.2.7
-djangorestframework==3.12.4
-psycopg2==2.9.1
+django==4.2.3
+djangorestframework==3.14.0
+psycopg2==2.9.6
 gunicorn==20.1.0
-django-heroku==0.3.1
-# tiene que ser este 10
-django-cors-headers==3.10.0
+django-cors-headers==4.2.0

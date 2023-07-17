@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path
 from SimpQuizApp import views
+from django.urls import re_path
+from rest_framework import permissions
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +28,6 @@ urlpatterns = [
     path('participacion/<int:pk>/', views.ParticipacionDetailView.as_view() ),
     path('participacion/all/', views.AllParticipacionesView.as_view() ),
     path('participacion/update/<int:pk>/', views.ActualizacionParticipacionView.as_view()),
-    path('participacion/remove/<int:pk>/', views.BorrarParticipacionView.as_view())
+    path('participacion/remove/<int:pk>/', views.BorrarParticipacionView.as_view()),
 
 ]
