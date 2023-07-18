@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1u3d9zz%-y1#=66*))3k@ca445m9w9-gh3g8cctihgi$=t+qr*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['simpquiz-deploy.onrender.com/']
+#ALLOWED_HOSTS = ['simpquiz-deploy.onrender.com/']
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 
