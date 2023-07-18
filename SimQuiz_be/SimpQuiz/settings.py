@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1u3d9zz%-y1#=66*))3k@ca445m9w9-gh3g8cctihgi$=t+qr*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://simpquiz-deploy.onrender.com/']
+ALLOWED_HOSTS = ['simpquiz-deploy.onrender.com/']
 CORS_ALLOW_ALL_ORIGINS = True
 
 
