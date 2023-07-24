@@ -50,7 +50,7 @@ export default {
         },
 
         getRankingList: function () {
-            axios.get(`http://127.0.0.1:8000/participante/all/`,
+            axios.get(`https://simpquiz-deploy.onrender.com/participante/all/`,
                 { headers: {} })
                 .then((result) => {
                     this.usuarios = result.data;

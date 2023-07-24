@@ -35,7 +35,7 @@ export default {
   methods: {
     processLogInUser: function () {
       axios.post(
-        "http://127.0.0.1:8000/participante/",
+        "https://simpquiz-deploy.onrender.com/participante/",
         this.user, {
         headers: {},
       })
@@ -55,7 +55,7 @@ export default {
 
     verifyUser: function () {
       axios.get(
-        `http://127.0.0.1:8000/participante/filter/${this.user.nickname}/`,
+        `https://simpquiz-deploy.onrender.com/participante/filter/${this.user.nickname}/`,
         {
           headers: {},
         })

@@ -83,7 +83,7 @@ export default {
 
     getPreguntasXCatergoria: function () {
       axios.get(
-        `http://127.0.0.1:8000/preguntas/filter/${this.participacionIn.ronda}/`,
+        `https://simpquiz-deploy.onrender.com/preguntas/filter/${this.participacionIn.ronda}/`,
         {
           headers: {},
         })
@@ -110,7 +110,7 @@ export default {
 
     CrearParticipacion: function () {
       axios.post(
-        "http://127.0.0.1:8000/participacion/",
+        "https://simpquiz-deploy.onrender.com/participacion/",
         this.participacionIn,
         {
           headers: {},
@@ -128,7 +128,7 @@ export default {
 
     getRtasXpregunta: function () {
       axios.get(
-        `http://127.0.0.1:8000/respuestas/filter/${this.participacionIn.preguntaId}/`,
+        `https://simpquiz-deploy.onrender.com/respuestas/filter/${this.participacionIn.preguntaId}/`,
         {
           headers: {},
         }).then((result) => {
@@ -173,7 +173,7 @@ export default {
     UpdateParticipacion: function () {
 
       if (this.participacionIn.ronda > 5) this.participacionIn.ronda = 5;
-      axios.put(`http://127.0.0.1:8000/participacion/update/${this.partiOut.id}/`,
+      axios.put(`https://simpquiz-deploy.onrender.com/participacion/update/${this.partiOut.id}/`,
         this.participacionIn,
         { headers: {} })
         .then((result) => {
@@ -189,7 +189,7 @@ export default {
 
     ActualizarPuntajeTotal: function () {
       this.participante.puntaje_Total += this.participacionIn.puntaje_Ronda;
-      axios.put(`http://127.0.0.1:8000/participante/update/${localStorage.getItem("userId")}/`,
+      axios.put(`https://simpquiz-deploy.onrender.com/participante/update/${localStorage.getItem("userId")}/`,
         this.participante,
         { headers: {} })
         .then((result) => {
@@ -208,7 +208,7 @@ export default {
     },
 
     DeleteParticipacion: function () {
-      axios.delete(`http://127.0.0.1:8000/participacion/remove/${this.partiOut.id}/`,
+      axios.delete(`https://simpquiz-deploy.onrender.com/participacion/remove/${this.partiOut.id}/`,
         { headers: {} })
         .then((result) => {
           console.log("Participacion borrada exitosamente");
@@ -223,7 +223,7 @@ export default {
 
     getAllCategories: function () {
       axios.get(
-        `http://127.0.0.1:8000/categorias/all/`,
+        `https://simpquiz-deploy.onrender.com/categorias/all/`,
         {
           headers: {},
         }).then((result) => {
